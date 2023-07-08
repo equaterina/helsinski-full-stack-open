@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+
+Note right of browser: When we click submit in the browser it triggers and event which updates the state of the SPA (adding the new note to the array<br/> of existing notes) and after that makes a POST request to the server.
+
+ browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+ server-->>browser: Response code is 201 (Created)
+    deactivate server
+
+    Note right of browser: We send the body of the note (content and date) and receive a response of code 201, and body of {"message":"note created"}.<br/>. Since the app is an SPA we are not redirected anywhere.
