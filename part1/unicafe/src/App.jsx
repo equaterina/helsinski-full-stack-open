@@ -1,19 +1,29 @@
 import { useState } from "react";
 
+const Button = ({ handler, value }) => (
+  <button onClick={handler}>{value}</button>
+);
+
+const StatisticsLine = ({ text, value }) => (
+  <p>
+    {text} {value}
+  </p>
+);
+
 const Statistics = ({ good, bad, neutral }) => {
   const total = good + bad + neutral;
   const average = (good * 1 + neutral * 0 - bad) / total;
   const positive = good / total;
 
-  return total > 1 ? (
+  return total >= 1 ? (
     <div>
       <h1>statistics</h1>
-      <p>good {good}</p>
-      <p>bad {bad}</p>
-      <p>neutral {neutral}</p>
-      <p>all {total}</p>
-      <p>average {average}</p>
-      <p>positive {positive}%</p>
+      <StatisticsLine text="good" value={good} />
+      <StatisticsLine text="bad" value={bad} />
+      <StatisticsLine text="neutral" value={neutral} />
+      <StatisticsLine text="all" value={total} />
+      <StatisticsLine text="average" value={average} />
+      <StatisticsLine text="positive" value={positive} />
     </div>
   ) : (
     <p>No feedback is given</p>
@@ -34,9 +44,9 @@ const App = () => {
     <div>
       <div>
         <h1>give feedback</h1>
-        <button onClick={handleUpdateGood}>good</button>
-        <button onClick={handleUpdateBad}>bad</button>
-        <button onClick={handleUpdateNeutral}>neutral</button>
+        <Button handler={handleUpdateGood} value="good"/>
+        <Button handler={handleUpdateBad} value="bad"/>
+        <Button handler={handleUpdateNeutral} value="neutral"/>
       </div>
       <Statistics good={good} bad={bad} neutral={neutral} />
     </div>
