@@ -17,7 +17,7 @@ const Statistics = ({ good, bad, neutral }) => {
   const positive = good / total;
 
   return total >= 1 ? (
-    <div>
+    <>
       <h1>statistics</h1>
       <table>
         <thead>
@@ -35,7 +35,7 @@ const Statistics = ({ good, bad, neutral }) => {
           <StatisticsLine text="positive" value={positive} />
         </tbody>
       </table>
-    </div>
+    </>
   ) : (
     <p>No feedback is given</p>
   );
